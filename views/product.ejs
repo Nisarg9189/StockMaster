@@ -1,21 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Products - StockMaster</title>
   <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    .dialog {
+      display: none;
+      /* hide by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(3px);
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+    }
+
+    .dialog-content {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .dialog.show {
+      display: flex;
+      /* flex to center */
+    }
+  </style>
 </head>
 
 <body>
   <div class="layout">
     <!-- <aside id="sidebar" class="sidebar"></aside> -->
-     <aside id="sidebar" class="sidebar">
+    <aside id="sidebar" class="sidebar">
       <div class="sidebar-header">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
             <svg class="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
             </svg>
           </div>
           <div>
@@ -28,45 +59,54 @@
       <nav class="sidebar-nav">
         <a href="http://localhost:8080/dashboard/<%= adminId %>" class="nav-item active">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
           Dashboard
         </a>
         <a href="http://localhost:8080/products/<%= adminId %>" class="nav-item">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
           </svg>
           Products
         </a>
         <a href="http://localhost:8080/receipts/<%= adminId %>" class="nav-item">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
           </svg>
           Receipts
         </a>
         <a href="http://localhost:8080/deliveries/<%= adminId %>" class="nav-item">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
           </svg>
           Delivery Orders
         </a>
         <a href="http://localhost:8080/adjustments/<%= adminId %>" class="nav-item">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
           </svg>
           Stock Adjustments
         </a>
         <a href="http://localhost:8080/transfers/<%= adminId %>" class="nav-item">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           Move History
         </a>
         <a href="http://localhost:8080/settings/<%= adminId %>" class="nav-item">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
           Settings
         </a>
@@ -75,13 +115,15 @@
       <div class="sidebar-footer">
         <a href="http://localhost:8080/profile/<%= adminId %>" class="nav-item">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
           My Profile
         </a>
         <button onclick="logout()" class="nav-item">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
           </svg>
           Logout
         </button>
@@ -101,8 +143,10 @@
       <main class="content">
         <div class="flex flex-col sm:flex-row justify-between gap-4 mb-6">
           <div class="relative flex-1 max-w-md">
-            <svg class="absolute left-3 top-3 w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <svg class="absolute left-3 top-3 w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <input type="text" id="searchInput" placeholder="Search products by name or SKU..." class="input pl-10">
           </div>
@@ -134,30 +178,45 @@
                   </tr>
                 </thead>
                 <tbody>
-                   <% for(product of result) { %>
-                  <tr>
-                    <td class="font-medium"><%= product.Product %></td>
-                    <td><%= product.SKU %></td>
-                    <td><%= product.Category %></td>
-                    <td><%= product.Stock %></td>
-                    <td><span class="badge badge-success"><%= product.Status %></span></td>
-                    <td><%= product.Location %></td>
-                    <td>
-                      <div class="flex gap-2">
-                        <button class="btn btn-ghost btn-sm" onclick="showToast('Edit product', 'info')">
+                  <% for(product of result) { %>
+                    <tr>
+                      <td class="font-medium">
+                        <%= product.Product %>
+                      </td>
+                      <td>
+                        <%= product.SKU %>
+                      </td>
+                      <td>
+                        <%= product.Category %>
+                      </td>
+                      <td>
+                        <%= product.Stock %>
+                      </td>
+                      <td><span class="badge badge-success">
+                          <%= product.Status %>
+                        </span></td>
+                      <td>
+                        <%= product.Location %>
+                      </td>
+                      <td>
+                        <div class="flex gap-2">
+                          <!-- <button class="btn btn-ghost btn-sm" onclick="showToast('Edit product', 'info')">
                           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                           </svg>
-                        </button>
-                        <button class="btn btn-ghost btn-sm text-destructive" onclick="showToast('Delete product', 'info')">
-                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                          </svg>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <% } %>
+                        </button> -->
+
+                          <button class="btn btn-ghost btn-sm edit-product-btn editProductBtn"
+                            data-id="<%= product._id %>" onclick="editProduct(this)">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <% } %>
                 </tbody>
               </table>
             </div>
@@ -208,39 +267,109 @@
           <label for="initialStock" class="text-sm font-medium">Initial Stock (Optional)</label>
           <input id="initialStock" type="number" placeholder="0" class="input" name="stock[quantity]">
         </div>
-      
-      <div class="flex justify-end gap-2 mt-4">
-        <button type="button" class="btn btn-outline" onclick="closeDialog('createProductDialog')">Cancel</button>
-        <button type="submit" class="btn btn-primary">Create Product</button>
-      </div>
+
+        <div class="flex justify-end gap-2 mt-4">
+          <button type="button" class="btn btn-outline" onclick="closeDialog('createProductDialog')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Product</button>
+        </div>
       </form>
     </div>
   </div>
 
+
+  <!-- Edit Product Dialog -->
+  <div id="editProductDialog" class="dialog">
+    <div class="dialog-content max-w-md">
+      <div class="dialog-header">
+        <h3 class="text-lg font-semibold">Edit Product</h3>
+        <button onclick="closeDialog('editProductDialog')" class="dialog-close">×</button>
+      </div>
+      <form id="editProductForm" method="POST" action="">
+        <!-- Hidden _id field -->
+        <input type="hidden" id="editProductId" name="product[_id]">
+
+        <div class="space-y-2">
+          <label for="editProductName">Product Name</label>
+          <input id="editProductName" name="product[name]" type="text" class="input" required>
+        </div>
+        <div class="space-y-2">
+          <label for="editProductSku">SKU</label>
+          <input id="editProductSku" name="product[sku]" type="text" class="input" required>
+        </div>
+        <div class="space-y-2">
+          <label for="editProductCategory">Category</label>
+          <input id="editProductCategory" name="product[category]" type="text" class="input">
+        </div>
+        <div class="space-y-2">
+          <label for="editProductUnitPrice">Unit Price</label>
+          <input id="editProductUnitPrice" name="product[unitPrice]" type="number" class="input" step="0.01">
+        </div>
+        <div class="space-y-2">
+          <label for="editProductQuantity">Quantity</label>
+          <input id="editProductQuantity" name="product[quantity]" type="number" class="input">
+        </div>
+        <div class="space-y-2">
+          <label for="editProductLowStockLimit">Low Stock Limit</label>
+          <input id="editProductLowStockLimit" name="product[lowStockLimit]" type="number" class="input">
+        </div>
+        <div class="flex justify-end gap-2 mt-4">
+          <button type="button" class="btn btn-outline" onclick="closeDialog('editProductDialog')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
   <div id="toast-container" class="toast-container"></div>
-  <script src="app.js"></script>
+  <!-- <script src="app.js"></script> -->
   <script>
     //loadSidebar('products.html');
-    
-      function openDialog(dialogId) {
+
+    function openDialog(dialogId) {
       const dialog = document.getElementById(dialogId);
       if (dialog) {
-          dialog.style.display = "block"; // show dialog
+        dialog.style.display = "block"; // show dialog
       }
-  }
+    }
 
-  // Function to close a dialog
-  function closeDialog(dialogId) {
+    // Function to close a dialog
+    function closeDialog(dialogId) {
       const dialog = document.getElementById(dialogId);
       if (dialog) {
-          dialog.style.display = "none"; // hide dialog
+        dialog.style.display = "none"; // hide dialog
       }
-  }
+    }
 
-  // Add click event to open dialog
-  document.getElementById("addProductBtn").addEventListener("click", function() {
-      openDialog("createProductDialog");
-  });
+    // Add click event to open dialog
+    //document.getElementById("addProductBtn").addEventListener("click", function () {
+    //openDialog("createProductDialog");
+    //});
+
+
+
+    async function editProduct(button) {
+      // Read data from the clicked button's dataset
+      const id = button.dataset.id;
+      console.log(id);
+      let data = await fetch(`/product/details/${id}`);
+      let product = await data.json();
+      console.log(product);
+
+      document.getElementById('editProductId').value = product._id;
+      document.getElementById('editProductName').value = product.name;
+      document.getElementById('editProductSku').value = product.sku;
+      document.getElementById('editProductCategory').value = product.category || '';
+      document.getElementById('editProductUnitPrice').value = product.unitPrice || 0;
+      document.getElementById('editProductQuantity').value = product.quantity || 0;
+      document.getElementById('editProductLowStockLimit').value = product.lowStockLimit || 0;
+      // Set form action dynamically
+      document.getElementById('editProductForm').action = `/products/${product._id}/${product.adminId}?_method=PUT`
+
+      // Open the modal
+      document.getElementById('editProductDialog').style.display = 'block';
+    }
   </script>
 </body>
+
 </html>

@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const mongoose = require("mongoose");
+const methodOverride = require('method-override');
 const { User, Product, Receipt, Delivery, Transfer, Adjustment, Operation } = require("./models/models.js");
 
 mongoose.connect("mongodb://127.0.0.1:27017/stockmaster")
@@ -10,7 +11,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/stockmaster")
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-
+app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -85,6 +86,7 @@ app.get("/products/:adminId", async (req, res) => {
         }).sort({ date: -1 }).lean();
 
         result.push({
+            _id: product._id,
             Product: product.name,
             SKU: product.sku,
             Category: product.category,
@@ -105,6 +107,13 @@ app.post("/products/add/:adminId", async (req, res) => {
     res.redirect(`/products/${adminId}`);
 
 });
+
+app.put("/products/:id/:adminId", async (req, res) => {
+    let {id, adminId} = req.params;
+    const updatedData = req.body.product;
+    await Product.findByIdAndUpdate(id, updatedData, { new: true });
+    res.redirect(`/products/${adminId}`);
+})
 
 
 app.get("/receipts/:adminId", async (req, res) => {
@@ -301,6 +310,15 @@ app.get("/settings/:adminId", (req, res) => {
 app.get("/profile", (req, res) => {
     res.render("profile");
 });
+
+app.get("/product/details/:id", async (req, res) => {
+    let {id} = req.params;
+
+    let data = await Product.findById(id);
+    console.log("ppp", data);
+
+    res.json(data);
+})
 
 
 app.listen("8080", () => {
