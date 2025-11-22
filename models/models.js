@@ -1,15 +1,6 @@
-// seed.js
+
 const mongoose = require("mongoose");
 
-// --------------------
-// 1. Connect to MongoDB
-// --------------------
-// mongoose.connect("mongodb://127.0.0.1:27017/stockmaster")
-//     .then(() => console.log("MongoDB connected"))
-//     .catch(err => console.error(err));
-// --------------------
-// 2. Define Schemas
-// --------------------
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
@@ -87,9 +78,7 @@ const OperationSchema = new Schema({
     createdAt: { type: Date, default: Date.now }
 });
 
-// --------------------
-// 3. Create Models
-// --------------------
+
 const User = mongoose.model("User", UserSchema);
 const Product = mongoose.model("Product", ProductSchema);
 const Receipt = mongoose.model("Receipt", ReceiptSchema);
@@ -98,9 +87,7 @@ const Transfer = mongoose.model("Transfer", TransferSchema);
 const Adjustment = mongoose.model("Adjustment", AdjustmentSchema);
 const Operation = mongoose.model("Operation", OperationSchema);
 
-// --------------------
-// 4. Seed Data
-// --------------------
+
 async function seed() {
     try {
         // Clear existing data
@@ -112,7 +99,7 @@ async function seed() {
         await Adjustment.deleteMany({});
         await Operation.deleteMany({});
 
-        // 1️⃣ Admin
+        
         const admin = await User.create({
             name: "John Doe",
             email: "admin@example.com",
@@ -120,42 +107,42 @@ async function seed() {
             role: "admin"
         });
 
-        // 2️⃣ Products
+        
         const products = await Product.insertMany([
             { adminId: admin._id, name: "Laptop", sku: "PROD001", category: "Electronics", unitPrice: 1200, quantity: 15, lowStockLimit: 5 },
             { adminId: admin._id, name: "Mouse", sku: "PROD002", category: "Electronics", unitPrice: 25, quantity: 50, lowStockLimit: 10 },
             { adminId: admin._id, name: "Office Chair", sku: "PROD003", category: "Furniture", unitPrice: 150, quantity: 10, lowStockLimit: 3 }
         ]);
 
-        // 3️⃣ Receipts
+      
         await Receipt.insertMany([
             { adminId: admin._id, productId: products[0]._id, reference: "RCPT001", supplier: "Tech Supplies Co.", quantity: 10, status: "Received", date: new Date("2025-11-21T12:00:00Z"), notes: "First batch of laptops" },
             { adminId: admin._id, productId: products[1]._id, reference: "RCPT002", supplier: "Gadget World", quantity: 50, status: "Received", date: new Date("2025-11-21T13:00:00Z"), notes: "Mouse stock" }
         ]);
 
-        // 4️⃣ Deliveries
+        
         await Delivery.insertMany([
             { adminId: admin._id, productId: products[0]._id, reference: "DLV001", customer: "Alice Corp", quantity: 3, status: "Delivered", date: new Date("2025-11-22T09:00:00Z") },
             { adminId: admin._id, productId: products[1]._id, reference: "DLV002", customer: "Bob Industries", quantity: 5, status: "Pending", date: new Date("2025-11-22T10:00:00Z") }
         ]);
 
-        // 5️⃣ Transfers
+        
         await Transfer.insertMany([
             { adminId: admin._id, productId: products[0]._id, reference: "TRF001", fromLocation: "Warehouse A", toLocation: "Store B", quantity: 5, status: "Completed", date: new Date("2025-11-22T11:00:00Z") }
         ]);
 
-        // 6️⃣ Adjustments
+        
         await Adjustment.insertMany([
             { adminId: admin._id, productId: products[2]._id, reference: "ADJ001", change: -1, reason: "Damaged chair", date: new Date("2025-11-22T12:00:00Z") }
         ]);
 
-        // 7️⃣ Operations
+        
         await Operation.insertMany([
             { adminId: admin._id, reference: "RCPT001", type: "receipt", productId: products[0]._id, quantity: 10, status: "Received", date: new Date("2025-11-21T12:00:00Z") },
             { adminId: admin._id, reference: "DLV001", type: "delivery", productId: products[0]._id, quantity: 3, status: "Delivered", date: new Date("2025-11-22T09:00:00Z") }
         ]);
 
-        console.log("✅ Database seeded successfully!");
+        console.log("Database seeded successfully!");
         mongoose.connection.close();
     } catch (err) {
         console.error(err);
