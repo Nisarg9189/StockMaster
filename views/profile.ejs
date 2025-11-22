@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - StockMaster</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <div class="main-content">
+      <header class="header">
+        <button id="menuBtn" class="menu-btn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <h2 class="text-xl font-semibold">My Profile</h2>
+      </header>
+
+      <main class="content">
+        <div class="max-w-2xl mx-auto space-y-6">
+          <!-- Profile Information -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="text-lg font-semibold">Profile Information</h3>
+              <p class="text-sm text-muted-foreground">Update your personal information</p>
+            </div>
+            <div class="card-content">
+              <form id="profileForm" class="space-y-4">
+                <div class="space-y-2">
+                  <label for="fullName" class="text-sm font-medium">Full Name</label>
+                  <input id="fullName" type="text" class="input" value="John Doe" required />
+                </div>
+                <div class="space-y-2">
+                  <label for="email" class="text-sm font-medium">Email</label>
+                  <input id="email" type="email" class="input" value="john.doe@company.com" required />
+                </div>
+                <div class="space-y-2">
+                  <label for="phone" class="text-sm font-medium">Phone Number</label>
+                  <input id="phone" type="tel" class="input" value="+1 234 567 8900" />
+                </div>
+                <div class="space-y-2">
+                  <label for="role" class="text-sm font-medium">Role</label>
+                  <input id="role" type="text" class="input" value="Warehouse Manager" disabled />
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Change Password -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="text-lg font-semibold">Change Password</h3>
+              <p class="text-sm text-muted-foreground">Update your password to keep your account secure</p>
+            </div>
+            <div class="card-content">
+              <form id="passwordForm" class="space-y-4">
+                <div class="space-y-2">
+                  <label for="currentPassword" class="text-sm font-medium">Current Password</label>
+                  <input id="currentPassword" type="password" class="input" required />
+                </div>
+                <div class="space-y-2">
+                  <label for="newPassword" class="text-sm font-medium">New Password</label>
+                  <input id="newPassword" type="password" class="input" required />
+                </div>
+                <div class="space-y-2">
+                  <label for="confirmPassword" class="text-sm font-medium">Confirm New Password</label>
+                  <input id="confirmPassword" type="password" class="input" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Update Password</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Account Actions -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="text-lg font-semibold">Account Actions</h3>
+            </div>
+            <div class="card-content">
+              <div class="space-y-3">
+                <button onclick="logout()" class="btn btn-outline w-full">
+                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+  <script src="app.js"></script>
+  <script>
+    loadSidebar('profile.html');
+    
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      showToast('Profile updated successfully!', 'success');
+    });
+
+    document.getElementById('passwordForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      
+      if (newPassword !== confirmPassword) {
+        showToast('Passwords do not match', 'error');
+        return;
+      }
+      
+      showToast('Password updated successfully!', 'success');
+      document.getElementById('passwordForm').reset();
+    });
+  </script>
+</body>
+</html>

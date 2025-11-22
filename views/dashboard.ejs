@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - StockMaster</title>
+  <link rel="stylesheet" href="/styles.css">
+  <!-- Moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" integrity="sha512-C7/LX8H+/xU+LtDtzgRjZl3PZpJg3y8b7FzHn+3lClB/7aHgNdQyG4wC/k3a6Q/OSY3eWwS5X9i9Lr4rAazO6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg">StockMaster</h1>
+            <p class="text-xs text-muted-foreground">Inventory System</p>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="http://localhost:8080/dashboard/<%= adminId %>" class="nav-item active">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="http://localhost:8080/products/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+          Products
+        </a>
+        <a href="http://localhost:8080/receipts" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+          Receipts
+        </a>
+        <a href="http://localhost:8080/deliveries" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+          </svg>
+          Delivery Orders
+        </a>
+        <a href="http://localhost:8080/adjustments" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          Stock Adjustments
+        </a>
+        <a href="http://localhost:8080/transfers" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Move History
+        </a>
+        <a href="http://localhost:8080/settings" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="http://localhost:8080/profile" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          My Profile
+        </a>
+        <button onclick="logout()" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="header">
+        <button id="menuBtn" class="menu-btn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <h2 class="text-xl font-semibold">Dashboard</h2>
+      </header>
+
+      <main class="content">
+        <!-- KPI Cards -->
+        <div class="grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+          <div class="card">
+            <div class="card-header flex-row items-center justify-between pb-2">
+              <h3 class="text-sm font-medium text-muted-foreground">Total Products</h3>
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="text-2xl font-bold"><%= totalProducts %></div>
+              <div class="flex items-center text-xs mt-1 text-success">
+                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+                +12% from last month
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header flex-row items-center justify-between pb-2">
+              <h3 class="text-sm font-medium text-muted-foreground">Low Stock Items</h3>
+              <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="text-2xl font-bold">23</div>
+              <div class="flex items-center text-xs mt-1 text-success">
+                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+                +5 from last month
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header flex-row items-center justify-between pb-2">
+              <h3 class="text-sm font-medium text-muted-foreground">Pending Receipts</h3>
+              <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="text-2xl font-bold"><%= pendingReceipts %></div>
+              <div class="flex items-center text-xs mt-1 text-destructive">
+                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+                </svg>
+                -3 from last month
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header flex-row items-center justify-between pb-2">
+              <h3 class="text-sm font-medium text-muted-foreground">Pending Deliveries</h3>
+              <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="text-2xl font-bold"><%= pendingDeliveries %></div>
+              <div class="flex items-center text-xs mt-1 text-success">
+                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+                +8 from last month
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header flex-row items-center justify-between pb-2">
+              <h3 class="text-sm font-medium text-muted-foreground">Internal Transfers</h3>
+              <svg class="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="text-2xl font-bold"><%= internalTransfers %></div>
+              <div class="flex items-center text-xs mt-1 text-destructive">
+                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+                </svg>
+                -2 from last month
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Operations -->
+        <div class="card mt-6">
+          <div class="card-header">
+            <h3 class="text-lg font-semibold">Recent Operations</h3>
+          </div>
+          <div class="card-content">
+            <div class="flex flex-wrap gap-4 mb-6">
+              <select class="select w-48">
+                <option value="all">All Types</option>
+                <option value="receipts">Receipts</option>
+                <option value="delivery">Delivery Orders</option>
+                <option value="transfer">Internal Transfers</option>
+                <option value="adjustment">Adjustments</option>
+              </select>
+
+              <select class="select w-48">
+                <option value="all">All Status</option>
+                <option value="draft">Draft</option>
+                <option value="waiting">Waiting</option>
+                <option value="ready">Ready</option>
+                <option value="done">Done</option>
+                <option value="canceled">Canceled</option>
+              </select>
+
+              <button class="btn btn-outline">Clear Filters</button>
+            </div>
+
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Reference</th>
+                    <th>Type</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(op of ops) { %>
+                  <tr>
+                    <td class="font-medium"><%= op.reference %></td>
+                    <td><%= op.type %></td>
+                    <td><%= op.productId.name %></td>
+                    <td><%= op.productId.quantity %></td>
+                    <td><span class="badge badge-success"><%= op.status %></span></td>
+                    <td><%= op.date %></td>
+                    <td><button class="btn btn-ghost btn-sm">View</button></td>
+                  </tr>
+                  <% } %>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+  <script src="app.js"></script>
+</body>
+</html>

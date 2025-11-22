@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Adjustments - StockMaster</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg">StockMaster</h1>
+            <p class="text-xs text-muted-foreground">Inventory System</p>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="http://localhost:8080/dashboard/<%= adminId %>" class="nav-item active">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="http://localhost:8080/products/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+          Products
+        </a>
+        <a href="http://localhost:8080/receipts/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+          Receipts
+        </a>
+        <a href="http://localhost:8080/deliveries/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+          </svg>
+          Delivery Orders
+        </a>
+        <a href="http://localhost:8080/adjustments/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          Stock Adjustments
+        </a>
+        <a href="http://localhost:8080/transfers/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Move History
+        </a>
+        <a href="http://localhost:8080/settings/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="http://localhost:8080/profile/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          My Profile
+        </a>
+        <button onclick="logout()" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="header">
+        <button id="menuBtn" class="menu-btn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <h2 class="text-xl font-semibold">Stock Adjustments</h2>
+      </header>
+
+      <main class="content">
+        <div class="flex justify-end mb-6">
+          <button onclick="openDialog('createAdjustmentDialog')" class="btn btn-primary">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            New Adjustment
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="text-lg font-semibold">Stock Adjustments</h3>
+          </div>
+          <div class="card-content">
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Reference</th>
+                    <th>Product</th>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>Reason</th>
+                    <!-- <th>Status</th> -->
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(adjustment of adjustments) { %>
+                    <tr>
+                      <td class="font-medium">
+                        <%= adjustment.reference %>
+                      </td>
+                      <td>
+                        <%= adjustment.productId.name %>
+                      </td>
+                      <td>Remove</td>
+                      <td>
+                        <%= adjustment.productId.quantity %>
+                      </td>
+                      <td>
+                        <%= adjustment.reason %>
+                      </td>
+                      <!-- <td><span class="badge badge-success">Done</span></td> -->
+                      <td>
+                        <%= adjustment.date %>
+                      </td>
+                      <td><button class="btn btn-ghost btn-sm">View</button></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Create Adjustment Dialog -->
+  <div id="createAdjustmentDialog" class="dialog">
+    <div class="dialog-content max-w-2xl">
+      <div class="dialog-header">
+        <h3 class="text-lg font-semibold">Create Stock Adjustment</h3>
+        <p class="text-sm text-muted-foreground">Adjust inventory quantities</p>
+        <button onclick="closeDialog('createAdjustmentDialog')" class="dialog-close">×</button>
+      </div>
+      <form id="createAdjustmentForm" class="space-y-4 py-4"  method="post" action="/adjustments/add/<%= adminId %>">
+        <!-- <div class="space-y-2">
+          <label for="product" class="text-sm font-medium">Product</label>
+          <select id="product" class="select" required>
+            <option value="">Select product</option>
+            <option value="steel-rods">Steel Rods</option>
+            <option value="office-chairs">Office Chairs</option>
+            <option value="computer-parts">Computer Parts</option>
+          </select>
+        </div>
+        <div class="space-y-2">
+          <label for="adjustmentType" class="text-sm font-medium">Adjustment Type</label>
+          <select id="adjustmentType" class="select" required>
+            <option value="">Select type</option>
+            <option value="add">Add Inventory</option>
+            <option value="remove">Remove Inventory</option>
+          </select>
+        </div>
+        <div class="space-y-2">
+          <label for="quantity" class="text-sm font-medium">Quantity</label>
+          <input id="quantity" type="number" placeholder="0" class="input" required>
+        </div>
+        <div class="space-y-2">
+          <label for="reason" class="text-sm font-medium">Reason</label>
+          <select id="reason" class="select" required>
+            <option value="">Select reason</option>
+            <option value="damaged">Damaged</option>
+            <option value="found">Found in storage</option>
+            <option value="lost">Lost/Missing</option>
+            <option value="count-correction">Inventory count correction</option>
+          </select>
+        </div> -->
+        <!-- Product -->
+        <div class="space-y-2">
+          <label for="product" class="text-sm font-medium">Product</label>
+          <select name="adjustment[productId]" id="product" class="select" required>
+            <option value="">Select product</option>
+            <% products.forEach(p=> { %>
+              <option value="<%= p._id %>">
+                <%= p.name %>
+              </option>
+              <% }) %>
+          </select>
+        </div>
+
+        <div class="space-y-2">
+          <label for="location" class="text-sm font-medium">Location</label>
+          <select name="adjustment[location]" id="location" class="select" required>
+            <option value="">Select location</option>
+            <option value="warehouse-a">Warehouse A</option>
+            <option value="warehouse-b">Warehouse B</option>
+          </select>
+        </div>
+
+        <div class="space-y-2">
+          <label for="countedQuantity" class="text-sm font-medium">Counted Quantity</label>
+          <input type="number" name="adjustment[countedQuantity]" id="countedQuantity" placeholder="Enter counted stock"
+            class="input" required>
+        </div>
+
+        <div class="space-y-2">
+          <label for="reason" class="text-sm font-medium">Reason</label>
+          <select name="adjustment[reason]" id="reason" class="select" required>
+            <option value="">Select reason</option>
+            <option value="damaged">Damaged</option>
+            <option value="found">Found in storage</option>
+            <option value="lost">Lost</option>
+            <option value="count-correction">Count correction</option>
+          </select>
+        </div>
+
+        <div class="flex justify-end gap-2 mt-4">
+          <button type="button" class="btn btn-outline" onclick="closeDialog('createAdjustmentDialog')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Adjustment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+  <script src="app.js"></script>
+  <script>
+    function openDialog(id) {
+      const dialog = document.getElementById(id);
+      if (dialog) {
+        dialog.style.display = "flex"; // show it
+        dialog.classList.add("open");   // optional: for animations
+      }
+    }
+
+    function closeDialog(id) {
+      const dialog = document.getElementById(id);
+      if (dialog) {
+        dialog.style.display = "none"; // hide it
+        dialog.classList.remove("open");
+      }
+    }
+  </script>
+</body>
+
+</html>

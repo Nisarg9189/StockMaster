@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StockMaster - Modern Inventory Management System for tracking products, receipts, deliveries, and stock movements">
+  <title>Login - StockMaster Inventory Management</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="min-h-screen flex items-center justify-center bg-background p-4">
+    <div class="card w-full max-w-md">
+      <div class="card-header space-y-3 text-center">
+        <div class="mx-auto w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+          <svg class="w-7 h-7 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+        </div>
+        <h2 class="text-2xl font-semibold">Welcome to StockMaster</h2>
+        <p class="text-sm text-muted-foreground">Sign in to manage your inventory</p>
+      </div>
+      <div class="card-content">
+        <form id="loginForm" class="space-y-4" method="post" action="/signin">
+          <div class="space-y-2">
+            <label for="email" class="text-sm font-medium">Email</label>
+            <input id="email" type="email" placeholder="you@company.com" class="input" name="stock[email]" required />
+          </div>
+          <div class="space-y-2">
+            <label for="password" class="text-sm font-medium">Password</label>
+            <input id="password" type="password" placeholder="Enter your password" name="stock[password]" class="input" required />
+          </div>
+          <button type="button" class="btn-link text-sm px-0" onclick="window.location.href='forgot-password.html'">
+            Forgot password?
+          </button>
+          <button type="submit" class="btn btn-primary w-full">Sign In</button>
+          <div class="text-center text-sm text-muted-foreground">
+            Don't have an account?
+            <button type="submit" class="btn-link px-1" onclick="window.location.href='signup'">Sign up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+  <!-- <script src="app.js"></script> -->
+  <!-- <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      if (email && password) {
+        showToast('Login successful!', 'success');
+        setTimeout(() => window.location.href = 'dashboard', 1000);
+      } else {
+        showToast('Please fill in all fields', 'error');
+      }
+    });
+  </script> -->
+</body>
+</html>

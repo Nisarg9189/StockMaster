@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - StockMaster</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg">StockMaster</h1>
+            <p class="text-xs text-muted-foreground">Inventory System</p>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="http://localhost:8080/dashboard/<%= adminId %>" class="nav-item active">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="http://localhost:8080/products/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+          Products
+        </a>
+        <a href="http://localhost:8080/receipts/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+          Receipts
+        </a>
+        <a href="http://localhost:8080/deliveries/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+          </svg>
+          Delivery Orders
+        </a>
+        <a href="http://localhost:8080/adjustments/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          Stock Adjustments
+        </a>
+        <a href="http://localhost:8080/transfers/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Move History
+        </a>
+        <a href="http://localhost:8080/settings/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="http://localhost:8080/profile/<%= adminId %>" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          My Profile
+        </a>
+        <button onclick="logout()" class="nav-item">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="header">
+        <button id="menuBtn" class="menu-btn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <h2 class="text-xl font-semibold">Settings</h2>
+      </header>
+
+      <main class="content">
+        <div class="grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Warehouses -->
+          <div class="card">
+            <div class="card-header flex-row items-center justify-between">
+              <h3 class="text-lg font-semibold">Warehouses</h3>
+              <button onclick="openDialog('createWarehouseDialog')" class="btn btn-primary btn-sm">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Add Warehouse
+              </button>
+            </div>
+            <div class="card-content">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between p-3 border rounded-lg">
+                  <div>
+                    <p class="font-medium">Warehouse A</p>
+                    <p class="text-sm text-muted-foreground">Main Storage Facility</p>
+                  </div>
+                  <button class="btn btn-ghost btn-sm">Edit</button>
+                </div>
+                <div class="flex items-center justify-between p-3 border rounded-lg">
+                  <div>
+                    <p class="font-medium">Warehouse B</p>
+                    <p class="text-sm text-muted-foreground">Secondary Storage</p>
+                  </div>
+                  <button class="btn btn-ghost btn-sm">Edit</button>
+                </div>
+                <div class="flex items-center justify-between p-3 border rounded-lg">
+                  <div>
+                    <p class="font-medium">Warehouse C</p>
+                    <p class="text-sm text-muted-foreground">Distribution Center</p>
+                  </div>
+                  <button class="btn btn-ghost btn-sm">Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Categories -->
+          <div class="card">
+            <div class="card-header flex-row items-center justify-between">
+              <h3 class="text-lg font-semibold">Product Categories</h3>
+              <button onclick="openDialog('createCategoryDialog')" class="btn btn-primary btn-sm">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Add Category
+              </button>
+            </div>
+            <div class="card-content">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between p-3 border rounded-lg">
+                  <p class="font-medium">Raw Materials</p>
+                  <button class="btn btn-ghost btn-sm">Edit</button>
+                </div>
+                <div class="flex items-center justify-between p-3 border rounded-lg">
+                  <p class="font-medium">Furniture</p>
+                  <button class="btn btn-ghost btn-sm">Edit</button>
+                </div>
+                <div class="flex items-center justify-between p-3 border rounded-lg">
+                  <p class="font-medium">Electronics</p>
+                  <button class="btn btn-ghost btn-sm">Edit</button>
+                </div>
+                <div class="flex items-center justify-between p-3 border rounded-lg">
+                  <p class="font-medium">Consumables</p>
+                  <button class="btn btn-ghost btn-sm">Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- System Settings -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="text-lg font-semibold">System Settings</h3>
+            </div>
+            <div class="card-content">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="font-medium">Low Stock Alert</p>
+                    <p class="text-sm text-muted-foreground">Get notified when stock is low</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="font-medium">Email Notifications</p>
+                    <p class="text-sm text-muted-foreground">Receive email updates</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="font-medium">Auto-approve Transfers</p>
+                    <p class="text-sm text-muted-foreground">Automatically approve internal transfers</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Company Information -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="text-lg font-semibold">Company Information</h3>
+            </div>
+            <div class="card-content">
+              <form class="space-y-4">
+                <div class="space-y-2">
+                  <label class="text-sm font-medium">Company Name</label>
+                  <input type="text" class="input" value="Acme Corporation" />
+                </div>
+                <div class="space-y-2">
+                  <label class="text-sm font-medium">Email</label>
+                  <input type="email" class="input" value="info@acme.com" />
+                </div>
+                <div class="space-y-2">
+                  <label class="text-sm font-medium">Phone</label>
+                  <input type="tel" class="input" value="+1 234 567 8900" />
+                </div>
+                <button type="button" onclick="showToast('Settings saved!', 'success')" class="btn btn-primary">
+                  Save Changes
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Create Warehouse Dialog -->
+  <div id="createWarehouseDialog" class="dialog">
+    <div class="dialog-content max-w-md">
+      <div class="dialog-header">
+        <h3 class="text-lg font-semibold">Add Warehouse</h3>
+        <button onclick="closeDialog('createWarehouseDialog')" class="dialog-close">×</button>
+      </div>
+      <form class="space-y-4 py-4">
+        <div class="space-y-2">
+          <label class="text-sm font-medium">Warehouse Name</label>
+          <input type="text" class="input" placeholder="e.g., Warehouse D" required>
+        </div>
+        <div class="space-y-2">
+          <label class="text-sm font-medium">Description</label>
+          <input type="text" class="input" placeholder="Brief description">
+        </div>
+      </form>
+      <div class="flex justify-end gap-2 mt-4">
+        <button class="btn btn-outline" onclick="closeDialog('createWarehouseDialog')">Cancel</button>
+        <button class="btn btn-primary" onclick="closeDialog('createWarehouseDialog'); showToast('Warehouse added!', 'success')">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Category Dialog -->
+  <div id="createCategoryDialog" class="dialog">
+    <div class="dialog-content max-w-md">
+      <div class="dialog-header">
+        <h3 class="text-lg font-semibold">Add Category</h3>
+        <button onclick="closeDialog('createCategoryDialog')" class="dialog-close">×</button>
+      </div>
+      <form class="space-y-4 py-4">
+        <div class="space-y-2">
+          <label class="text-sm font-medium">Category Name</label>
+          <input type="text" class="input" placeholder="e.g., Office Supplies" required>
+        </div>
+      </form>
+      <div class="flex justify-end gap-2 mt-4">
+        <button class="btn btn-outline" onclick="closeDialog('createCategoryDialog')">Cancel</button>
+        <button class="btn btn-primary" onclick="closeDialog('createCategoryDialog'); showToast('Category added!', 'success')">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+  <script src="app.js"></script>
+  <script>
+    loadSidebar('settings.html');
+  </script>
+
+  <style>
+    .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--input); transition: 0.3s; border-radius: 24px; }
+    .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: 0.3s; border-radius: 50%; }
+    input:checked + .slider { background-color: var(--primary); }
+    input:checked + .slider:before { transform: translateX(20px); }
+  </style>
+</body>
+</html>

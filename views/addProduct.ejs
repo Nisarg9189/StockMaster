@@ -1,0 +1,53 @@
+<form action="/products/add/<% adminId %>" method="POST" class="max-w-lg mx-auto p-6 bg-white shadow rounded-lg">
+  <h2 class="text-2xl font-semibold mb-4">Add New Product</h2>
+
+  <!-- Product Name -->
+  <div class="mb-4">
+    <label for="name" class="block text-gray-700 font-medium mb-1">Product Name</label>
+    <input type="text" name="name" id="name" required
+      class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+  </div>
+
+  <!-- SKU -->
+  <div class="mb-4">
+    <label for="sku" class="block text-gray-700 font-medium mb-1">SKU</label>
+    <input type="text" name="sku" id="sku" required
+      class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+  </div>
+
+  <!-- Category -->
+  <div class="mb-4">
+    <label for="category" class="block text-gray-700 font-medium mb-1">Category</label>
+    <input type="text" name="category" id="category"
+      class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+  </div>
+
+  <!-- Unit Price -->
+  <div class="mb-4">
+    <label for="unitPrice" class="block text-gray-700 font-medium mb-1">Unit Price</label>
+    <input type="number" name="unitPrice" id="unitPrice" step="0.01" min="0"
+      class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+  </div>
+
+  <!-- Quantity -->
+  <div class="mb-4">
+    <label for="quantity" class="block text-gray-700 font-medium mb-1">Initial Stock Quantity</label>
+    <input type="number" name="quantity" id="quantity" min="0" value="0"
+      class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+  </div>
+
+  <!-- Low Stock Limit -->
+  <div class="mb-4">
+    <label for="lowStockLimit" class="block text-gray-700 font-medium mb-1">Low Stock Limit</label>
+    <input type="number" name="lowStockLimit" id="lowStockLimit" min="0" value="5"
+      class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+  </div>
+
+  <!-- Submit Button -->
+  <div class="text-right">
+    <button type="submit"
+      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring">
+      Add Product
+    </button>
+  </div>
+</form>

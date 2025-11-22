@@ -1,0 +1,26 @@
+<div id="sidebar">
+    <h2>StockMaster</h2>
+
+    <button onclick="go('/dashboard')" id="nav-dashboard">Dashboard</button>
+    <button onclick="go('/products')" id="nav-products">Products</button>
+    <button onclick="go('/receipts')" id="nav-receipts">Receipts</button>
+    <button onclick="go('/deliveries')" id="nav-deliveries">Deliveries</button>
+    <button onclick="go('/transfers')" id="nav-transfers">Transfers</button>
+    <button onclick="go('/adjustments')" id="nav-adjustments">Adjustments</button>
+    <button onclick="go('/ledger')" id="nav-ledger">Move History</button>
+    <button onclick="go('/settings')" id="nav-settings">Settings</button>
+    <button onclick="go('/profile')" id="nav-profile">Profile</button>
+</div>
+
+<script>
+    function go(path) { window.location.href = path; }
+
+    function highlight(page) {
+        document.querySelectorAll("#sidebar button")
+            .forEach(btn => btn.classList.remove("active"));
+
+        let id = "nav-" + page;
+        let btn = document.getElementById(id);
+        if (btn) btn.classList.add("active");
+    }
+</script>
